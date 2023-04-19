@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const slugify = require('slugify');
 
 const movieSchema = new mongoose.Schema({
   title: {
@@ -6,6 +7,13 @@ const movieSchema = new mongoose.Schema({
     required: [true, 'A Movie must have a title'],
     unique: true,
   },
+  slug: {
+    type: String,
+  },
+  // secretMovie: {
+  //   type: Boolean,
+  //   default: false,
+  // },
   year: {
     type: Number,
   },
@@ -21,8 +29,20 @@ const movieSchema = new mongoose.Schema({
   rating: {
     type: Number,
     default: 0,
+    min: [1, 'Rating must be above 1.0 '],
+    max: [10, 'Rating must be below 10.0'],
   },
 });
+
+movieSchema.pre('save', function (next) {
+  this.slug = slugify(this.title, { lower: true });
+  next();
+});
+
+// movieSchema.pre('/^find/', function (next) {
+//   this.find({ secretMovie: { $ne: true } });
+//   next();
+// });
 
 const Movie = mongoose.model('Movie', movieSchema);
 
