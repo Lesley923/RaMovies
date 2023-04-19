@@ -5,7 +5,6 @@ const router = express.Router();
   
 router.get('/', viewsController.getOverview);
   
-router.get('/movie/:slug', viewsController.getMovie);
+router.get('/movie', viewsController.getMovie);
 
 module.exports = router;
-
