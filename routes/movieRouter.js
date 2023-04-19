@@ -4,6 +4,8 @@ const router = express.Router();
 
 // router.param('id', movieController.checkID);
 
+router.route('/movie-state').get(movieController.getMovieStats);
+
 router
   .route('/top-5-movies')
   .get(movieController.aliasTopMovies, movieController.getAllMovies);

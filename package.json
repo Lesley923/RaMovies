@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "start:dev": "nodemon server.js",
-    "start:prod": "set NODE_ENV=production && nodemon server.js"
+    "start:prod": "set NODE_ENV=production && nodemon server.js",
+    "debug": "ndb server.js"
   },
   "author": "Hollywood",
   "license": "ISC",
@@ -16,8 +17,8 @@
     "mongodb": "^5.2.0",
     "mongoose": "^7.0.3",
     "morgan": "^1.10.0",
-    "nodemon": "^2.0.22",
-    "pug": "^3.0.2"
+    "pug": "^3.0.2",
+    "slugify": "^1.6.6"
   },
   "devDependencies": {
     "eslint": "^8.38.0",
