@@ -30,6 +30,6 @@ app.use('/', viewRouter);
 
 
 
-app.use('/v1/movie', movieRouter);
+app.use('/', movieRouter);
 
 module.exports = app;
