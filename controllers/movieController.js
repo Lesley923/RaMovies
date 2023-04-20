@@ -31,6 +31,7 @@ exports.getMovie = catchAsync(async (req, res, next) => {
   const movie = await Movie.findById(req.params.id);
 
   if (!movie) {
+    console.log(sb);
     return next(new AppError('No Movie found with that ID', 404));
   }
   res.status(200).json({
