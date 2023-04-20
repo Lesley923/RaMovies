@@ -2,6 +2,7 @@ const AppError = require('../utils/appError');
 const Movie = require('./../models/movieModel');
 const APIFeatures = require('./../utils/apiFeatures');
 const catchAsync = require('./../utils/catchAsync');
+const slugify = require('slugify');
 
 exports.aliasTopMovies = (req, res, next) => {
   req.query.limit = '5';
@@ -29,7 +30,6 @@ exports.getAllMovies = catchAsync(async (req, res, next) => {
 
 exports.getMovie = catchAsync(async (req, res, next) => {
   const movie = await Movie.findById(req.params.id);
-
   if (!movie) {
     console.log(sb);
     return next(new AppError('No Movie found with that ID', 404));
