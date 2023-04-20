@@ -1,0 +1,26 @@
+extends base
+
+block content
+    .container
+        .row
+         
+
+            .col-md-9
+                .admin-table
+                    h2 Manage Movie
+                    a.btn.btn-primary(href="/admin/addmovie") Add New Item
+
+                    table.table.table-hover
+                        thead
+                            tr
+                                th Title
+                                th Director
+                                th Actions
+                        tbody
+                            each movie in movies
+                                tr
+                                    td #{movie.title}
+                                    td #{movie.director}
+                                    td
+                                        a.btn.btn-warning(href="/edit/#{movie.slug}") Edit
+                                        a.btn.btn-danger(href=`/delete/${movie.slug}`) Delete

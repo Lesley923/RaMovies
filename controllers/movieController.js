@@ -18,14 +18,18 @@ exports.getAllMovies = catchAsync(async (req, res, next) => {
     .pager();
 
   const movies = await features.query;
-
-  res.status(200).json({
-    status: 'success',
-    results: movies.length,
-    data: {
-      movies: movies,
-    },
+  res.status(200).render('admin_movie', {
+    title: 'Manage',
+    movies,
   });
+
+  // res.status(200).json({
+  //   status: 'success',
+  //   results: movies.length,
+  //   data: {
+  //     movies: movies,
+  //   },
+  // });
 });
 
 exports.getMovie = catchAsync(async (req, res, next) => {
@@ -60,23 +64,43 @@ exports.updateMovie = catchAsync(async (req, res, next) => {
 
 exports.createMovie = catchAsync(async (req, res, next) => {
   const newMovie = await Movie.create(req.body);
-  res.status(201).json({
-    status: 'success',
-    data: {
-      movie: newMovie,
-    },
+  const movies = await Movie.find();
+  res.status(200).render('admin_movie', {
+    title: 'Manage',
+    movies,
   });
+
+  // res.status(201).json({
+  //   status: 'success',
+  //   data: {
+  //     movie: newMovie,
+  //   },
+  // });
 });
 
+// controllers/movieController.js
+exports.showAddMovieForm = (req, res, next) => {
+  res.status(200).render('add_movie', {
+    title: 'Add Movie',
+  });
+};
+
 exports.deleteMovie = catchAsync(async (req, res, next) => {
+  // const movie = await Movie.deleteOne({ slug: req.params.slug });
+
   const movie = await Movie.findByIdAndDelete(req.params.id);
   if (!movie) {
     return next(new AppError('No Movie found with that ID', 404));
   }
-  res.status(204).json({
-    status: 'success',
-    data: null,
+  const movies = await Movie.find();
+  res.status(200).render('admin_movie', {
+    title: 'Manage',
+    movies,
   });
+  // res.status(204).json({
+  //   status: 'success',
+  //   data: null,
+  // });
 });
 
 exports.getMovieStats = catchAsync(async (req, res, next) => {

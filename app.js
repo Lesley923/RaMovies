@@ -1,6 +1,7 @@
 const path = require('path');
 const express = require('express');
 const morgan = require('morgan');
+const bodyParser = require('body-parser');
 
 const movieRouter = require('./routes/movieRouter');
 const userRouter = require('./routes/userRouter');
@@ -23,6 +24,7 @@ if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
 }
 app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use((req, res, next) => {
   req.requestTime = new Date().toISOString();
   next();
