@@ -1,52 +1,67 @@
 extends base 
 
+mixin overviewBox(label, text, icon)
+    .overview-box__detail
+        svg.overview-box__icon
+            use(xlink:href=`/img/icons.svg#icon-${icon}`)
+        span.overview-box__label= label  
+        span.overview-box__text= text
+
+mixin reviewCard(review)
+    .reviews__card
+        .reviews__avatar
+            img.reviews__avatar-img(src='/img/users/user-7.jpg', alt='Jim Brown')
+            h6.reviews__user Jim Brown
+        p.reviews__text Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque dignissimos sint quo commodi corrupti accusantium veniam saepe numquam.
+        .reviews__rating
+            svg.reviews__star.reviews__star--active
+                use(xlink:href='/img/icons.svg#icon-star')
+            svg.reviews__star.reviews__star--active
+                use(xlink:href='/img/icons.svg#icon-star')
+            svg.reviews__star.reviews__star--active
+                use(xlink:href='/img/icons.svg#icon-star')
+            svg.reviews__star.reviews__star--active
+                use(xlink:href='/img/icons.svg#icon-star')
+            svg.reviews__star.reviews__star--active
+                use(xlink:href='/img/icons.svg#icon-star')
+
+
+
 block content 
     section.section-header
         .header__hero
             .header__hero-overlay &nbsp;
-            img.header__hero-img(src='/img/tour-5-cover.jpg', alt='Tour 5')
+            img.header__hero-img(src='#', alt='')
 
         .heading-box
-        h1.heading-primary
-            span The Park Camper Tour
-        .heading-box__group
-            .heading-box__detail
-                svg.heading-box__icon
-                    use(xlink:href='/img/icons.svg#icon-clock')
-                span.heading-box__text 10 days
-            .heading-box__detail
-                svg.heading-box__icon
-                    use(xlink:href='/img/icons.svg#icon-map-pin')
-                span.heading-box__text Las Vegas, USA
+            h1.heading-primary
+                span My MOVIE hhhh 
+            .heading-box__group
+                .heading-box__detail
+                    svg.heading-box__icon
+                        use(xlink:href='/img/icons.svg#icon-clock')
+                    span.heading-box__text year 
+                .heading-box__detail
+                    svg.heading-box__icon
+                        use(xlink:href='/img/icons.svg#icon-map-pin')
+                    span.heading-box__text Country
 
     section.section-description
         .overview-box
             div
                 .overview-box__group
                     h2.heading-secondary.ma-bt-lg Quick facts
-                    .overview-box__detail
-                        svg.overview-box__icon
-                            use(xlink:href='/img/icons.svg#icon-calendar')
-                        span.overview-box__label Next date
-                        span.overview-box__text August 2021
-                    .overview-box__detail
-                        svg.overview-box__icon
-                            use(xlink:href='/img/icons.svg#icon-trending-up')
-                        span.overview-box__label Difficulty
-                        span.overview-box__text Medium
-                    .overview-box__detail
-                        svg.overview-box__icon
-                            use(xlink:href='/img/icons.svg#icon-user')
-                        span.overview-box__label Participants
-                        span.overview-box__text 10 people
-                    .overview-box__detail
-                        svg.overview-box__icon
-                            use(xlink:href='/img/icons.svg#icon-star')
-                        span.overview-box__label Rating
-                        span.overview-box__text 4.9 / 5
+
+                    +overviewBox('Category', 'fiction', 'calendar')
+                    +overviewBox('Director', 'one person', 'trending-up')
+                    +overviewBox('Duration', 'minutes', 'user')
+                    +overviewBox('Rating', 'xxx', 'star')
 
                 .overview-box__group
-                    h2.heading-secondary.ma-bt-lg Your tour guides
+                    h2.heading-secondary.ma-bt-lg Actors 
+                    //- each actor in movie.actors
+                        img(src=``, alt=`${actor.name}`)
+                        span= actor.name
                     .overview-box__detail
                         img.overview-box__img(src='/img/users/user-19.jpg', alt='Lead guide')
                         span.overview-box__label Lead guide
@@ -62,11 +77,18 @@ block content
 
         .description-box
             h2.heading-secondary.ma-bt-lg About the park camper tour
+            //-  - const paragraphs = movie.description.split('\n');
+                 each p in paragraphs
+                    p.description__text= p
             p.description__text Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
             p.description__text Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum!
 
 
     section.section-pictures
+        //- each img, i in movie.images
+            .picture-box
+                img.picture-box__img(src=`${img}`, alt=`movie poster ${i+1}`, class=`picture-box__img--${i+1}`)
+
         .picture-box
             img.picture-box__img.picture-box__img--1(src='/img/tour-5-1.jpg', alt='The Park Camper Tour 1')
         picture-box
@@ -79,23 +101,9 @@ block content
 
     section.section-reviews
         .reviews
+        
+            //- each review in movie.reviews
 
-            .reviews__card
-                .reviews__avatar
-                    img.reviews__avatar-img(src='/img/users/user-7.jpg', alt='Jim Brown')
-                    h6.reviews__user Jim Brown
-                p.reviews__text Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque dignissimos sint quo commodi corrupti accusantium veniam saepe numquam.
-                .reviews__rating
-                    svg.reviews__star.reviews__star--active
-                        use(xlink:href='/img/icons.svg#icon-star')
-                    svg.reviews__star.reviews__star--active
-                        use(xlink:href='/img/icons.svg#icon-star')
-                    svg.reviews__star.reviews__star--active
-                        use(xlink:href='/img/icons.svg#icon-star')
-                    svg.reviews__star.reviews__star--active
-                        use(xlink:href='/img/icons.svg#icon-star')
-                    svg.reviews__star.reviews__star--active
-                        use(xlink:href='/img/icons.svg#icon-star')
 
     section.section-cta
         .cta

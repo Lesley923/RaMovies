@@ -18,7 +18,7 @@ exports.getOverview = catchAsync(async (req,res,next) => {
 
 exports.getMovie = catchAsync(async (req,res) => {
   // 1) get the data, for the requested movie (including reviews)
-  const movie = await Movie.findOne({slug: req.params.slug}).populate({
+  const movie = await Movie.findOne({ slug: req.params.slug }).populate({
     path:'reviews',
     fields: 'review rating user'
   });
