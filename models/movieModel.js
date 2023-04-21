@@ -35,6 +35,9 @@ const movieSchema = new mongoose.Schema({
   poster_url: {
     type: String,
   },
+  description: {
+    type: String,
+  },
 });
 
 // movieSchema.virtual('reviews', {

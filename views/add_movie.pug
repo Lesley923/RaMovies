@@ -3,7 +3,7 @@ extends base
 block content
     .container
         h2 Add New Movie
-        form(method="POST" action="/admin/addmovie")
+        form(method="POST" action="/v1/movie/admin/add")
             .form-group
                 label(for="title") Title
                 input#title.form-control(type="text" name="title" required)

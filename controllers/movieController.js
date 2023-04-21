@@ -16,7 +16,6 @@ exports.getAllMovies = catchAsync(async (req, res, next) => {
     .limiter()
     .limiter()
     .pager();
-
   const movies = await features.query;
   res.status(200).render('admin_movie', {
     title: 'Manage',
@@ -28,38 +27,48 @@ exports.getAllMovies = catchAsync(async (req, res, next) => {
   //   results: movies.length,
   //   data: {
   //     movies: movies,
-  //   },
+  // },
   // });
 });
 
 exports.getMovie = catchAsync(async (req, res, next) => {
-  const movie = await Movie.findById(req.params.id);
+  // const movie = await Movie.findById(req.params.id);
+  const movie = await Movie.findOne({ slug: req.params.slug });
+  console.log(movie);
   if (!movie) {
-    console.log(sb);
+    console.log(movie);
     return next(new AppError('No Movie found with that ID', 404));
   }
-  res.status(200).json({
-    status: 'success',
-    data: {
-      movie,
-    },
+  res.status(200).render('detail_movie', {
+    title: 'Details',
+    movie,
   });
 });
 
 exports.updateMovie = catchAsync(async (req, res, next) => {
-  const movie = await Movie.findByIdAndUpdate(req.params.id, req.body, {
-    new: true,
-    runValidators: true,
-  });
+  const movie = await Movie.findOneAndUpdate(
+    { slug: req.params.slug },
+    req.body,
+    {
+      new: true,
+      runValidators: true,
+    }
+  );
   if (!movie) {
     return next(new AppError('No Movie found with that ID', 404));
   }
-  res.status(200).json({
-    status: 'success',
-    data: {
-      movie,
-    },
+  const movies = await Movie.find();
+  res.status(200).render('admin_movie', {
+    title: 'Manage',
+    movies,
   });
+
+  // res.status(200).json({
+  //   status: 'success',
+  //   data: {
+  //     movie,
+  //   },
+  // });
 });
 
 exports.createMovie = catchAsync(async (req, res, next) => {
@@ -85,12 +94,20 @@ exports.showAddMovieForm = (req, res, next) => {
   });
 };
 
-exports.deleteMovie = catchAsync(async (req, res, next) => {
-  // const movie = await Movie.deleteOne({ slug: req.params.slug });
+exports.showEditMovieForm = catchAsync(async (req, res, next) => {
+  const movie = await Movie.findOne({ slug: req.params.slug });
 
-  const movie = await Movie.findByIdAndDelete(req.params.id);
+  res.status(200).render('edit_movie', {
+    title: 'Edit Movie',
+    movie,
+  });
+});
+
+exports.deleteMovie = catchAsync(async (req, res, next) => {
+  const movie = await Movie.findOneAndDelete({ slug: req.params.slug });
+  console.log('sb');
   if (!movie) {
-    return next(new AppError('No Movie found with that ID', 404));
+    return next(new AppError('No Movie found with that slug', 404));
   }
   const movies = await Movie.find();
   res.status(200).render('admin_movie', {
@@ -102,6 +119,22 @@ exports.deleteMovie = catchAsync(async (req, res, next) => {
   //   data: null,
   // });
 });
+
+// exports.searchMovie = catchAsync(async (req, res, next) => {
+//   // const movie = await Movie.findById(req.params.id);
+//   const queryStr = req.query.query;
+//   console.log(queryStr);
+//   const movie = await Movie.findOne({ slug: req.params.slug });
+//   console.log(movie);
+//   if (!movie) {
+//     console.log(movie);
+//     return next(new AppError('No Movie found with that ID', 404));
+//   }
+//   res.status(200).render('detail_movie', {
+//     title: 'Details',
+//     movie,
+//   });
+// });
 
 exports.getMovieStats = catchAsync(async (req, res, next) => {
   const stats = await Movie.aggregate([

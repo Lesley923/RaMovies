@@ -3,12 +3,16 @@ extends base
 block content
     .container
         .row
-         
-
             .col-md-9
                 .admin-table
-                    h2 Manage Movie
-                    a.btn.btn-primary(href="/admin/addmovie") Add New Item
+                    .d-flex.justify-content-between.align-items-center
+                        h2 Manage Movie
+                        form(action="/v1/movie/admin/search", method="GET")
+                            .input-group
+                                input.form-control(type="text", name="query", placeholder="Search movies...")
+                                .input-group-append
+                                    button.btn.btn-primary(type="submit") Search
+                    a.btn.btn-primary(href="/v1/movie/admin/add", style="margin-bottom: 10px;") Add New Item
 
                     table.table.table-hover
                         thead
@@ -22,5 +26,7 @@ block content
                                     td #{movie.title}
                                     td #{movie.director}
                                     td
-                                        a.btn.btn-warning(href="/edit/#{movie.slug}") Edit
-                                        a.btn.btn-danger(href=`/delete/${movie.slug}`) Delete
+                                        a.btn.btn-info(href=`/v1/movie/details/${movie.slug}`) Details
+                                        a.btn.btn-warning(href=`/v1/movie/edit/${movie.slug}`) Edit
+                                        form.inline-form(action=`/v1/movie/delete/${movie.slug}`, method="POST", style="display:inline;")
+                                            button.btn.btn-danger(type="submit") Delete
