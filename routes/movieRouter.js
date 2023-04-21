@@ -10,14 +10,19 @@ router
   .route('/top-5-movies')
   .get(movieController.aliasTopMovies, movieController.getAllMovies);
 
-router
-  .route('/')
-  .get(movieController.getAllMovies)
-  .post(movieController.createMovie);
+router.route('/admin').get(movieController.getAllMovies);
+
 router
   .route('/:id')
   .get(movieController.getMovie)
   .patch(movieController.updateMovie)
   .delete(movieController.deleteMovie);
+
+router.get('/admin/add', movieController.showAddMovieForm);
+router.post('/admin/add', movieController.createMovie);
+router.get('/edit/:slug', movieController.showEditMovieForm);
+router.post('/edit/:slug', movieController.updateMovie);
+router.post('/delete/:slug', movieController.deleteMovie); //dlete 有点问题
+router.get('/details/:slug', movieController.getMovie);
 
 module.exports = router;

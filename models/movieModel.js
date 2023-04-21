@@ -32,17 +32,25 @@ const movieSchema = new mongoose.Schema({
     min: [1, 'Rating must be above 1.0 '],
     max: [10, 'Rating must be below 10.0'],
   },
+  poster_url: {
+    type: String,
+  },
+  description: {
+    type: String,
+  },
 });
+
+// movieSchema.virtual('reviews', {
+//   ref: 'Review',
+//   foreignField: 'movie',
+//   localField: '_id'
+// });
 
 movieSchema.pre('save', function (next) {
   this.slug = slugify(this.title, { lower: true });
+
   next();
 });
-
-// movieSchema.pre('/^find/', function (next) {
-//   this.find({ secretMovie: { $ne: true } });
-//   next();
-// });
 
 const Movie = mongoose.model('Movie', movieSchema);
 
