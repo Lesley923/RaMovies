@@ -3,6 +3,8 @@ const express = require('express');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 
+const cookieParser = require('cookie-parser');
+
 const movieRouter = require('./routes/movieRouter');
 const userRouter = require('./routes/userRouter');
 const viewRouter = require('./routes/viewRoutes');
@@ -29,6 +31,19 @@ app.use((req, res, next) => {
   req.requestTime = new Date().toISOString();
   next();
 });
+
+// Body parser, reading data from body into req.body
+app.use(cookieParser());
+
+
+// Test middleware
+app.use((req, res, next) => {
+  req.requestTime = new Date().toISOString();
+  console.log(req.cookies);
+  next();
+});
+
+
 
 //router
 app.use('/', viewRouter);

@@ -25,4 +25,4 @@ router.post('/edit/:slug', movieController.updateMovie);
 router.post('/delete/:slug', movieController.deleteMovie); //dlete 有点问题
 router.get('/details/:slug', movieController.getMovie);
 
-module.exports = router;
+module.exports = router; 

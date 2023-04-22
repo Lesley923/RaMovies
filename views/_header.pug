@@ -1,6 +1,6 @@
 header.header 
     nav.nav.nav--movies 
-        a.nav__el(href='#') All Movies 
+        a.nav__el(href='/') All Movies 
     .header__logo 
         img(src='/img/logo-white.png' alt='Movies')
     nav.nav.nav--user    
@@ -8,5 +8,5 @@ header.header
         //- a.nav__el(href='#') 
         //-     img.nav__user-img(src='img/iser.jpg' alt='User photo') 
         //-     span Jonas 
-        button.nav__el.nav__el--cta Sign up 
-        button.nav__el Log in
+        a.nav__el.nav__el--cta(href='#') Sign up 
+        a.nav__el(href='/login') Log in
