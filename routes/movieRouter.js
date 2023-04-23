@@ -33,4 +33,4 @@ router.post('/delete/:slug', movieController.deleteMovie); //dlete 有点问题
 router.get('/details/:slug', movieController.getMovie);
 // router.get('v1/movie/admin/search', movieController.searchMovie);
 
-module.exports = router;
+module.exports = router; 

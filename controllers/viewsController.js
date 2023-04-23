@@ -15,7 +15,7 @@ exports.getOverview = catchAsync(async (req, res, next) => {
   });
 });
 
-exports.getMovie = catchAsync(async (req, res) => {
+exports.getMovie = catchAsync(async (req, res, next) => {
   // 1) get the data, for the requested movie (including reviews)
   const movie = await Movie.findOne({ slug: req.params.slug }).populate({
     path: 'reviews',
@@ -30,3 +30,10 @@ exports.getMovie = catchAsync(async (req, res) => {
     movie,
   });
 });
+
+
+exports.getLoginForm = (req, res) => {
+  res.status(200).render('login', {
+    title: 'Log into your account'
+  });
+};
