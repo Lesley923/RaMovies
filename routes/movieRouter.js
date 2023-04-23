@@ -11,7 +11,6 @@ router
   .get(movieController.aliasTopMovies, movieController.getAllMovies);
 
 router
-<<<<<<< Updated upstream
   .route('/')
   .get(movieController.getAllMovies)
   .post(movieController.createMovie);
@@ -20,9 +19,5 @@ router
   .get(movieController.getMovie)
   .patch(movieController.updateMovie)
   .delete(movieController.deleteMovie);
-=======
-  .route('/admin')
-  .get( movieController.getAllMovies);
->>>>>>> Stashed changes
 
 module.exports = router;
