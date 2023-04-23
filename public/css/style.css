@@ -139,7 +139,7 @@
     background-image: linear-gradient(to right, #ff7730, #eb4d4b);
     font-size: 3.5rem;
   }
-  
+ 
   .heading-primary,
   .heading-tertirary {
     color: #fff;
@@ -1491,6 +1491,7 @@
 
 
 /* add_movie css */
+
 .add-page{
   background-image: url('https://wallpaperaccess.com/full/1508269.jpg');
   background-size: cover;
@@ -1526,6 +1527,7 @@
   margin-top: 10px;
   margin-bottom: 20px;
   text-align: center;
+
 }
 
 .add_form-group {
@@ -1534,6 +1536,7 @@
   justify-content: space-between; /* Add space between label and input */
   margin-bottom: 20px;
 }
+
 .add-botton{
   display: flex;
   justify-content: center;
@@ -1545,6 +1548,7 @@
   font-size: 18px;
   font-weight: 600;
   margin-left: 7%;
+
 }
 
 .add_form-control {
@@ -1552,13 +1556,16 @@
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
+
   width: 80%;
   margin-right: 8%;
+
 }
 
 textarea.add_form-control {
   resize: vertical; /* Allow vertical resizing of the textarea */
 }
+
 
 
 
@@ -1726,5 +1733,6 @@ textarea.add_form-control {
   margin-top: 80px;
   margin-bottom: 50px;
 }
+
 
 

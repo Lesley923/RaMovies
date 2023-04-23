@@ -1,5 +1,6 @@
 const express = require('express');
 const movieController = require('./../controllers/movieController');
+const authController = require('./../controllers/authController');
 const router = express.Router();
 
 // router.param('id', movieController.checkID);
@@ -11,18 +12,29 @@ router
   .get(movieController.aliasTopMovies, movieController.getAllMovies);
 
 router
-<<<<<<< Updated upstream
-  .route('/')
-  .get(movieController.getAllMovies)
-  .post(movieController.createMovie);
-router
-  .route('/:id')
-  .get(movieController.getMovie)
-  .patch(movieController.updateMovie)
-  .delete(movieController.deleteMovie);
-=======
+
   .route('/admin')
   .get( movieController.getAllMovies);
->>>>>>> Stashed changes
+  .route('/admin')
+  .get(
+    authController.protect,
+    authController.restrictTo('admin'),
+    movieController.getAllMovies
+  );
 
-module.exports = router;
+// router
+//   .route('/:id')
+//   .get(movieController.getMovie)
+//   .patch(movieController.updateMovie)
+//   .delete(movieController.deleteMovie);
+
+router.get('/admin/add', movieController.showAddMovieForm);
+router.post('/admin/add', movieController.createMovie);
+router.get('/edit/:slug', movieController.showEditMovieForm);
+router.post('/edit/:slug', movieController.updateMovie);
+router.post('/delete/:slug', movieController.deleteMovie); //dlete 有点问题
+router.get('/details/:slug', movieController.getMovie);
+// router.get('v1/movie/admin/search', movieController.searchMovie);
+
+
+module.exports = router; 
