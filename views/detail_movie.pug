@@ -1,0 +1,24 @@
+extends base 
+
+block content
+    .detail-container
+        .poster
+            img.img-fluid(src=`${movie.poster_url}`, alt= `${movie.title}`)
+
+        .movie_information
+            .detail-title 
+                h2.movie-title #{movie.title}
+                h4.movie-year #{movie.year}
+                p.movie-genre Genre : &nbsp; #{movie.genre}
+                p.movie-director Director : &nbsp; #{movie.director}
+                p.movie-rating Rating : &nbsp; #{movie.rating}
+            .detail-actor
+                h5.movie-actors-title Actors:
+                ul.movie-actors-list
+                    each actor in movie.actors
+                        li #{actor}
+            .detail-des 
+                h5.movie-description-title Description:
+                p.movie-description #{movie.description}
+            .detail-button
+                a.admin_btn.admin_btn-primary(href="/v1/movie/admin") Back to Manage Movie
