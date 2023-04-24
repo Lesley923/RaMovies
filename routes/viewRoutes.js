@@ -8,6 +8,6 @@ router.get('/', viewsController.getOverview);
 
 router.get('/movie/:slug', viewsController.getMovie);
 
-// router.get('/login', viewsController.getLoginForm);
+router.get('/login', viewsController.getLoginForm);
 
 module.exports = router;
