@@ -1,37 +1,45 @@
 extends base 
 
 block content
-    .container
-        .row
-            .col_left
+    .admin-container
+        //- .row
+        .col_left
             // navigation bar for different management
-            .col_right
-                .admin-table
-                    .funcion_title 
-                        h1.admin-heading-primary Manage Movie
-                    .search_bar 
-                        form(action="/v1/movie/admin/search", method="GET")
-                            .input-group
-                                input.form-control(type="text", name="query", placeholder="Search movies...")
-                                .input-group-append
-                                    button.admin_btn.admin_btn-primary(type="submit") Search
-                    .add_new_movie 
-                        a.admin_btn.admin_btn-secondary(href="/v1/movie/admin/add") Add New Movie
-                        
-                .admin-movie-overview 
-                    table.table.table-hover
-                        thead
+            nav.admin-nav
+                ul
+                    li
+                        a(href='/v1/movie/admin') Movie Management
+                    li
+                        a(href='/v1/user/admin') User Management
+                    li
+                        a(href='/v1/review/admin') Review Management
+        .col_right
+            .admin-table
+                .funcion_title 
+                    h1.admin-heading-primary Manage Movie
+                .search_bar 
+                    form(action="/v1/movie/admin/search", method="GET")
+                        .input-group
+                            input.form-control(type="text", name="query", placeholder="Search movies...")
+                            .input-group-append
+                                button.admin_btn.admin_btn-primary(type="submit") Search
+                .add_new_movie 
+                    a.admin_btn.admin_btn-secondary(href="/v1/movie/admin/add") Add New Movie
+                    
+            .admin-movie-overview 
+                table.table.table-hover
+                    thead
+                        tr
+                            th Title
+                            th Director
+                            th Actions
+                    tbody.tbody
+                        each movie in movies
                             tr
-                                th Title
-                                th Director
-                                th Actions
-                        tbody.tbody
-                            each movie in movies
-                                tr
-                                    td #{movie.title}
-                                    td #{movie.director}
-                                    td
-                                        a.admin_btn.admin_btn-third(href=`/v1/movie/details/${movie.slug}`) Details
-                                        a.admin_btn.admin_btn-third(href=`/v1/movie/edit/${movie.slug}`) Edit
-                                        form.inline-form(action=`/v1/movie/delete/${movie.slug}`, method="POST", style="display:inline;")
-                                            button.admin_btn.admin_btn-third(type="submit") Delete
+                                td #{movie.title}
+                                td #{movie.director}
+                                td
+                                    a.admin_btn.admin_btn-third(href=`/v1/movie/details/${movie.slug}`) Details
+                                    a.admin_btn.admin_btn-third(href=`/v1/movie/edit/${movie.slug}`) Edit
+                                    form.inline-form(action=`/v1/movie/delete/${movie.slug}`, method="POST", style="display:inline;")
+                                        button.admin_btn.admin_btn-third(type="submit") Delete

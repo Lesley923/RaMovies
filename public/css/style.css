@@ -1329,9 +1329,64 @@
 
 
 /* admin page css */
+  .admin-container{
+    display: flex;
+    width: 100%;
+  }
+
+  .col_left {
+    flex: 0 0 15%; /* Adjust the value '200px' to change the width of the left column */
+    padding: 0px;
+    background-color: #f8f9fa; /* Light background color */
+    border-right: 1px solid #dee2e6; /* Vertical line */
+    height: 100vh; /* Full viewport height */
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+  }
+
+  .col_right {
+    flex: 1;
+    padding: 20px;
+  }
+
+  .admin-nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .admin-nav li {
+    margin-bottom: 30px;
+    text-align: center;
+  }
+
+  .admin-nav a {
+    display: inline-block;
+    padding: 16px 32px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 18px;
+    color: #333;
+    background-color: #eff1f2;
+    border-radius: 2px;
+    margin-bottom: 5px;
+    transition: all 0.3s;
+  }
+
+  .admin-nav a:hover {
+    background-color: #333;
+    color: #fff;
+    padding-left: 32px;
+  }
+
+  .admin-nav a.active {
+      background-color: #333;
+      color: #fff;
+  }
 
   .admin-heading-primary{
-    font-size: 2.7rem;
+    font-size: 2.9rem;
     text-transform: uppercase;
     font-weight: 700;
     background-image: -webkit-gradient(
@@ -1347,8 +1402,12 @@
     letter-spacing: 0.1rem;
     line-height: 1.3;
     display: inline-block;
+  }
+
+  .funcion_title{
+    text-align: center;
     margin-top: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
   }
 
   .search_bar {

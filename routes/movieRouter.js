@@ -13,12 +13,11 @@ router
 
 router
 
-  .route('/admin')
-  .get( movieController.getAllMovies);
+
   .route('/admin')
   .get(
-    authController.protect,
-    authController.restrictTo('admin'),
+    // authController.protect,
+    // authController.restrictTo('admin'),
     movieController.getAllMovies
   );
 
