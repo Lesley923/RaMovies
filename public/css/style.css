@@ -1491,14 +1491,43 @@
 
 
 /* add_movie css */
+
+.add-page{
+  background-image: url('https://wallpaperaccess.com/full/1508269.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  min-height: 100vh;
+  padding-top: 3%;
+  padding-bottom: 3%;
+
+
+}
+
+.add-page::before {
+  content: "";
+  background-color: rgba(0, 0, 0, 0.3); /* Black overlay with 30% opacity */
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1; /* Place the overlay below the content */
+}
+
 .container_add_movie {
-  max-width: 1000px;
+  max-width: 800px;
   margin: 0 auto;
   padding: 20px;
+  background-color: rgba(255, 255, 255, 0.8);
+  
 }
 .add-heading{
-  margin-top: 20px;
+  margin-top: 10px;
   margin-bottom: 20px;
+  text-align: center;
+
 }
 
 .add_form-group {
@@ -1507,16 +1536,19 @@
   justify-content: space-between; /* Add space between label and input */
   margin-bottom: 20px;
 }
-.add-bottom{
+
+.add-botton{
   display: flex;
   justify-content: center;
   margin-top: 50px; /* Add some margin above the button */
+  margin-bottom: 30px;
 }
 .add_form_label{
-  flex-basis: 40%; /* Set the width of the label area */
+  flex-basis: 30%; /* Set the width of the label area */
   font-size: 18px;
-  font-weight: 500;
-  margin-right: 20px;
+  font-weight: 600;
+  margin-left: 7%;
+
 }
 
 .add_form-control {
@@ -1524,13 +1556,183 @@
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  width: 100%;
+
+  width: 80%;
+  margin-right: 8%;
+
 }
 
 textarea.add_form-control {
   resize: vertical; /* Allow vertical resizing of the textarea */
 }
 
+
+
+
+/* movie-detail css */
+.detail-container {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: nowrap;
+  margin-top: 80px;
+  margin-bottom: 80px;
+}
+
+.poster {
+  flex-basis: 35%; 
+  margin-right: 10px;
+  margin-left: 15px;
+}
+
+.img-fluid {
+  width: 80%;
+  height: auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  transition: transform 0.3s ease;
+}
+.img-fluid:hover {
+  transform: scale(1.05);
+}
+
+.movie_information {
+  flex-basis: 65%;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+
+
+.movie-title {
+  font-size: 36px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  background: linear-gradient(to right, rgb(105, 105, 105), rgb(0, 0, 0));
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.movie-year {
+  font-size: 24px;
+  font-weight: 400;
+  margin-bottom: 20px;
+}
+
+.movie-genre,
+.movie-director,
+.movie-rating {
+    font-size: 18px;
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+
+.movie-actors-title,
+.movie-description-title {
+    font-size: 24px;
+    font-weight: 500;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.movie-actors-list {
+    font-size: 16px;
+    font-weight: 500;
+    padding-left: 20px;
+    margin-bottom: 20px;
+    list-style-type: disc;
+}
+
+.movie-actors-list li {
+  font-size: 1.1em;
+  margin-bottom: 5px;
+  /* color: #333; */
+  transition: color 0.3s ease;
+}
+.movie-actors-list li:hover {
+  color: #1d1d1e;
+}
+
+.detail-des{
+  width: 700px;
+}
+.movie-description {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+    /* background-color: rgba(240, 240, 240, 0.8); */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.detail-button{
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+
+
+/* admin edit movie css */
+
+.edit-page{
+  align-items: center;
+  justify-content: center;
+  padding-top: 80px;
+  padding-bottom: 80px;
+
+}
+.edit-container {
+  margin: 0 auto;
+  width: 60%;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+}
+
+.admin-edit-title{
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.edit-form-group {
+  display: flex;
+  margin-bottom: 25px;
+  align-items: center;
+  justify-content: space-between;
+
+}
+
+.edit-form-group label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  margin-left: 10%;
+  margin-right: 5%;
+  font-size: 1.6em;
+  width: 10%;
+}
+
+.edit-form-group input{
+  height: 38px;
+}
+
+.edit-form-group input,
+.edit-form-group textarea {
+    flex: 1;
+    padding: 8px;
+    font-size: 1.4em;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin-right: 20%;
+}
+
+.edit-button{
+  display: flex;
+  justify-content: center;
+  margin-top: 80px;
+  margin-bottom: 50px;
+}
 
 
 
