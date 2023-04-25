@@ -43,9 +43,8 @@ const userSchema = new mongoose.Schema({
     enum: ['user', 'admin'],
     default: 'user',
   },
-  registration_date: {
+  registration_data: {
     type: Date,
-    default: Date.now,
   },
   follows: {
     type: Array,
