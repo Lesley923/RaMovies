@@ -35,7 +35,6 @@ const createSendToken = (user, statusCode, res) => {
 
 exports.signup = catchAsync(async (req, res, next) => {
   const newUser = await User.create(req.body);
-  newUser.registration_data = Date.now();
   createSendToken(newUser, 201, res);
 });
 

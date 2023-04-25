@@ -13,6 +13,7 @@ const cookieParser = require('cookie-parser');
 const movieRouter = require('./routes/movieRouter');
 const userRouter = require('./routes/userRouter');
 const viewRouter = require('./routes/viewRoutes');
+const reviewRouter = require('./routes/reviewRouter');
 
 const app = express();
 
@@ -77,6 +78,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.use('/', viewRouter);
 app.use('/v1/movie', movieRouter);
 app.use('/v1/user', userRouter);
+app.use('/v1/review', reviewRouter);
 
 //global middlewares
 app.all('*', (req, res, next) => {

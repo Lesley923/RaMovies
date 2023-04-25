@@ -1,7 +1,9 @@
 const express = require('express');
 const movieController = require('./../controllers/movieController');
 const authController = require('./../controllers/authController');
+const reviewController = require('./../controllers/reviewController');
 const router = express.Router();
+const reviewRouter = require('./reviewRouter');
 
 // router.param('id', movieController.checkID);
 
@@ -11,30 +13,31 @@ router
   .route('/top-5-movies')
   .get(movieController.aliasTopMovies, movieController.getAllMovies);
 
-router
+router.route('/').get(
+  // authController.protect,
+  // authController.restrictTo('admin'),
+  movieController.getAllMovies
+);
 
-  .route('/admin')
-  .get( movieController.getAllMovies);
-  .route('/admin')
-  .get(
-    authController.protect,
-    authController.restrictTo('admin'),
-    movieController.getAllMovies
-  );
-
-// router
-//   .route('/:id')
-//   .get(movieController.getMovie)
-//   .patch(movieController.updateMovie)
-//   .delete(movieController.deleteMovie);
-
-router.get('/admin/add', movieController.showAddMovieForm);
-router.post('/admin/add', movieController.createMovie);
+router.get('/add', movieController.showAddMovieForm);
+router.post('/add', movieController.createMovie);
 router.get('/edit/:slug', movieController.showEditMovieForm);
 router.post('/edit/:slug', movieController.updateMovie);
-router.post('/delete/:slug', movieController.deleteMovie); //dlete 有点问题
+router.post('/delete/:slug', movieController.deleteMovie);
 router.get('/details/:slug', movieController.getMovie);
-// router.get('v1/movie/admin/search', movieController.searchMovie);
+// router
+//   .route('/:movieId/reviews')
+//   .post(
+//     authController.protect,
+//     authController.restrictTo('user'),
+//     reviewController.createReview
+//   );
 
+router.use('/:movieId/reviews', reviewRouter);
+router
+  .route('/:id')
+  .get(movieController.getMovie)
+  .patch(movieController.updateMovie)
+  .delete(movieController.deleteMovie);
 
-module.exports = router; 
+module.exports = router;
