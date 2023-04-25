@@ -5,7 +5,7 @@ block content
         .container_add_movie
             .add-heading
                 h2.admin-heading-primary Add New Movie
-            form(method="POST" action="/v1/movie/admin/add")
+            form(method="POST" action="/v1/movie/add")
                 .add_form-group
                     label.add_form_label(for="title") Title
                     input#title.add_form-control(type="text" name="title" required)

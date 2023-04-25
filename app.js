@@ -16,6 +16,7 @@ const globalErrorHandler = require('./controllers/errorController');
 const movieRouter = require('./routes/movieRouter');
 const userRouter = require('./routes/userRouter');
 const viewRouter = require('./routes/viewRoutes');
+const reviewRouter = require('./routes/reviewRouter');
 
 const app = express();
 
@@ -83,6 +84,7 @@ app.use((req, res, next) => {
 app.use('/', viewRouter);
 app.use('/v1/movie', movieRouter);
 app.use('/v1/user', userRouter);
+app.use('/v1/review', reviewRouter);
 
 //global middlewares
 app.all('*', (req, res, next) => {
