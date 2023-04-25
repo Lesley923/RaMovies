@@ -21,20 +21,16 @@ block content
                         //-  =`${movie.xxx}` 以上
                         p.card__text= movie.description 
                         .card__data 
-                            svg.card__icon 
-                                use(xlink:href='/img/icons.svg#icon-map-pin')
+                            img.card__icon(src="/img/genre.png", alt="")
                             span= movie.genre 
                         .card__data
-                            svg.card__icon 
-                                use(xlink:href='/img/icons.svg#icon-calendar')
+                            img.card__icon(src="/img/calendar.png", alt="") 
                             span= movie.year
                         .card__data 
-                            svg.card__icon 
-                                use(xlink:href='/img/icons.svg#icon-flag')
+                            img.card__icon(src="/img/director.png", alt="") 
                             span= movie.director
                         .card__data 
-                            svg.card__icon 
-                                use(xlink:href='/img/icons.svg#icon-user')
+                            img.card__icon(src="/img/actor.png", alt="") 
                             span= movie.actors
 
                     .card__footer 
@@ -46,4 +42,4 @@ block content
                             span.card__footer-value= movie.rating
                             | 
                             span.card__footer-text rating (21)
-                        a.btn.btn--green.btn--small(href='/movie/${movie.slug}') Details 
+                        a.btn.btn--green.btn--small(href="/movie/${movie.slug}") Details 

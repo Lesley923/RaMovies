@@ -2,11 +2,16 @@ header.header
     nav.nav.nav--movies 
         a.nav__el(href='/') All Movies 
     .header__logo 
-        img(src='/img/logo-white.png' alt='Movies')
+        img(src='/img/logo.png' alt='Movies')
     nav.nav.nav--user    
-        //- a.nav__el(href='#') My xxx 
-        //- a.nav__el(href='#') 
-        //-     img.nav__user-img(src='img/iser.jpg' alt='User photo') 
-        //-     span Jonas 
-        a.nav__el.nav__el--cta(href='#') Sign up 
-        a.nav__el(href='/login') Log in
+        if user 
+            a.nav__el.nav__el--logout Log out
+            a.nav__el(href='#') 
+                //- img.nav__user-img(src=`/img/users/${user.photo}` alt=`Photo of ${user.name}`) 
+                //- span= user.name.split(' ')[0]  
+                img.nav__user-img(src='https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHw%3D&w=1000&q=80' alt=`User Photo`) 
+                span Me 
+        else  
+            a.nav__el(href='/login') Log in
+            a.nav__el.nav__el--cta(href='#') Sign up 
+        
