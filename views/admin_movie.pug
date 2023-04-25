@@ -10,13 +10,13 @@ block content
                     .funcion_title 
                         h1.admin-heading-primary Manage Movie
                     .search_bar 
-                        form(action="/v1/movie/admin/search", method="GET")
+                        form(action="/v1/movie/", method="GET")
                             .input-group
-                                input.form-control(type="text", name="query", placeholder="Search movies...")
+                                input.form-control(type="text", name="title", placeholder="Search movies with title(Please note the case)...")
                                 .input-group-append
                                     button.admin_btn.admin_btn-primary(type="submit") Search
                     .add_new_movie 
-                        a.admin_btn.admin_btn-secondary(href="/v1/movie/admin/add") Add New Movie
+                        a.admin_btn.admin_btn-secondary(href="/v1/movie/add") Add New Movie
                         
                 .admin-movie-overview 
                     table.table.table-hover
@@ -26,7 +26,7 @@ block content
                                 th Director
                                 th Actions
                         tbody.tbody
-                            each movie in movies
+                            each movie in datas
                                 tr
                                     td #{movie.title}
                                     td #{movie.director}

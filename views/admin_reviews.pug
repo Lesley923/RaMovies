@@ -1,0 +1,36 @@
+extends base 
+
+block content
+    .container
+        .row
+            .col_left
+            // navigation bar for different management
+            .col_right
+                .admin-table
+                    .funcion_title 
+                        h1.admin-heading-primary Manage Reviews
+                    .search_bar 
+                        form(action="/v1/review/", method="GET")
+                            .input-group
+                                input.form-control(type="text", name="movie_id.title", placeholder="Search reviews with movie title(Please note the case)...")
+                                .input-group-append
+                                    button.admin_btn.admin_btn-primary(type="submit") Search
+                    //- .add_new_movie 
+                    //-     a.admin_btn.admin_btn-secondary(href="/v1/movie/add") Add New Movie
+                        
+                .admin-movie-overview 
+                    table.table.table-hover
+                        thead
+                            tr
+                                th Movie Title
+                                th User Name
+                                th Actions
+                        tbody.tbody
+                            each review in datas
+                                tr
+                                    td #{review.movie_id.title}
+                                    td #{review.user_id.username}
+                                    td
+                                        a.admin_btn.admin_btn-third(href=`/v1/review/details/${review._id}`) Details
+                                        form.inline-form(action=`/v1/review/delete/${review._id}`, method="POST", style="display:inline;")
+                                            button.admin_btn.admin_btn-third(type="submit") Delete

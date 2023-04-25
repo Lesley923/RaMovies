@@ -1,6 +1,7 @@
 const User = require('./../models/userModel');
 const catchAsync = require('./../utils/catchAsync');
 const AppError = require('./../utils/appError');
+const factory = require('./handlerFactory');
 
 const filterObj = (obj, ...allowFields) => {
   const newObj = {};
@@ -9,17 +10,10 @@ const filterObj = (obj, ...allowFields) => {
   });
   return newObj;
 };
-
-exports.getAllUsers = catchAsync(async (req, res, next) => {
-  const users = await User.find();
-  res.status(200).json({
-    status: 'success',
-    results: users.length,
-    data: {
-      movies: users,
-    },
-  });
-});
+exports.getMe = (req, res, next) => {
+  req.params.id = req.user.id;
+  next();
+};
 
 exports.updateMe = catchAsync(async (req, res, next) => {
   //create error if user post password data
@@ -52,28 +46,23 @@ exports.deleteMe = catchAsync(async (req, res, next) => {
     data: null,
   });
 });
+exports.showAddUserForm = (req, res, next) => {
+  res.status(200).render('add_user', {
+    title: 'Add User',
+  });
+};
+exports.showEditUserForm = catchAsync(async (req, res, next) => {
+  const user = await User.findById(req.params.id);
 
-exports.getUser = (req, res) => {
-  res.status(500).json({
-    status: 'error',
-    message: 'This route is not yet defined!',
+  res.status(200).render('edit_user', {
+    title: 'Edit User',
+    user,
   });
-};
-exports.createUser = (req, res) => {
-  res.status(500).json({
-    status: 'error',
-    message: 'This route is not yet defined!',
-  });
-};
-exports.updateUser = (req, res) => {
-  res.status(500).json({
-    status: 'error',
-    message: 'This route is not yet defined!',
-  });
-};
-exports.deleteUser = (req, res) => {
-  res.status(500).json({
-    status: 'error',
-    message: 'This route is not yet defined!',
-  });
-};
+});
+exports.getAllUsers = factory.getAll(User, 'admin_user', 'Manage');
+exports.getUser = factory.getOne(User, null, 'detail_user', 'Detail');
+
+exports.updateUser = factory.updateOne(User, 'admin_user', 'Manage');
+
+exports.deleteUser = factory.deleteOne(User, 'admin_user', 'Manage');
+exports.createUser = factory.createOne(User, 'admin_user', 'Manage');
