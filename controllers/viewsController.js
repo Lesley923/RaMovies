@@ -1,5 +1,6 @@
 const Movie = require('../models/movieModel');
 const catchAsync = require('../utils/catchAsync.js');
+const AppError = require('../utils/appError');
 
 exports.getOverview = catchAsync(async (req, res, next) => {
   // 1) get movie data
@@ -21,6 +22,10 @@ exports.getMovie = catchAsync(async (req, res, next) => {
     path: 'reviews',
     fields: 'review rating user_id',
   });
+
+  if(!movie) {
+    return next(new AppError('There is no movie with that name', 404));
+  }
 
   // 2) build template
 
