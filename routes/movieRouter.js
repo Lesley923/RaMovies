@@ -14,8 +14,8 @@ router
   .get(movieController.aliasTopMovies, movieController.getAllMovies);
 
 router.route('/').get(
-  // authController.protect,
-  // authController.restrictTo('admin'),
+  authController.protect,
+  authController.restrictTo('admin'),
   movieController.getAllMovies
 );
 

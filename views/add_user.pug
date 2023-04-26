@@ -22,17 +22,17 @@ block content
                     label.add_form_label(for="email") Email
                     input#email.add_form-control(type="text" name="email"  required)
 
-                .form-group
-                    label.form-label(for="role") Role
-                    .form-check
-                        input.form-check-input(type="radio" name="role"  value="user" required)
-                        label.form-check-label(for="user") User
-                    .form-check
-                        input.form-check-input(type="radio" name="role"  value="admin")
-                        label.form-check-label(for="admin") Admin
+                .add_form-group
+                    label.add_form_label(for="role") Role
+                    .add_form-check
+                        input.add-form-check-input(type="radio" name="role"  value="user" required)
+                        label.add-form-check-label(for="user") User
+                    .add_form-check  
+                        input.add-form-check-input(type="radio" name="role"  value="admin")
+                        label.add-form-check-label(for="admin") Admin
 
 
 
                 .add-botton
-                    button.admin_btn.admin_btn-primary(type="submit") Add 
+                    button.admin_btn.admin_btn-primary(type="submit") Add user
 

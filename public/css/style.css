@@ -1626,6 +1626,55 @@ textarea.add_form-control {
 }
 
 
+.add_form-check {
+  display: flex;
+  align-items: center;
+  margin-right:20%;
+}
+
+.add-form-check-input {
+  display: inline-block;
+  position: relative;
+  width: 20px;
+  height: 20px;
+  appearance: none; /* Remove default appearance */
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  outline: none;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.add-form-check-input:checked {
+  background-color: #fff;
+}
+
+.add-form-check-input::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 10px;
+  height: 10px;
+  background-color: #000;
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.add-form-check-input:checked::before {
+  opacity: 1;
+}
+
+.add-form-check-label {
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+
 
 
 /* movie-detail css */
@@ -1727,7 +1776,104 @@ textarea.add_form-control {
 .detail-button{
   margin-top: 50px;
   margin-bottom: 50px;
+  text-align: center;
 }
+
+
+.user-detail-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 7%;
+  margin-bottom: 7%;
+  padding: 20px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  background-color: #ffffff;
+}
+
+.user_information {
+  background-color: #ebeff3;
+  border: 1px solid #f8f5f5;
+  border-radius: 5px;
+  padding: 20px;
+  text-align: center;
+  width: 100%;
+
+}
+
+.user-username {
+  font-size: 28px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+
+.user-photo {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 10px;  
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.user-email,
+.user-follows,
+.user-was_followed,
+.user-registration_date {
+  font-size: 16px;
+  margin-bottom: 13px;
+  color: #3b3a3a;
+}
+
+
+.review-detail-container {
+  width: 70%;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #f3f8fb;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+
+.review_information {
+  margin-bottom: 20px;
+}
+
+h2.review-rating {
+  background-image: linear-gradient(120deg, #84b9fa 0%, #8f9bf4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 4%;
+  margin-top: 15px;
+  font-size: 2.4rem;
+}
+
+.review-content {
+  margin-bottom: 5%;
+  font-size: 1.8rem;
+  font-family:'Times New Roman', Times, serif;
+  color: #000000b6;
+}
+
+.review-info {
+  font-size: 1.4em;
+  color: #777;
+
+}
+
+.review-info p {
+  margin: 5px 0;
+}
+
+
+
+
 
 
 

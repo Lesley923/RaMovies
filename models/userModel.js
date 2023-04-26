@@ -26,40 +26,43 @@ const userSchema = new mongoose.Schema(
         message: 'Passwords are not the same',
       },
     },
-    passwordChangedAt: Date,
-    passwordResetToken: String,
-    passwordResetExpires: Date,
-    email: {
-      type: String,
-      require: [true, 'Please provide your email!'],
-      unique: true,
-      lowercase: true,
-      validate: [validator.isEmail, 'Please provide a valid email!'],
-    },
-    photo: {
-      type: String,
-    },
-    role: {
-      type: String,
-      enum: ['user', 'admin'],
-      default: 'user',
-    },
-    registration_date: {
-      type: Date,
-      default: Date.now,
-    },
-    follows: {
-      type: Array,
-    },
-    was_followed: {
-      type: Array,
-    },
-    active: {
-      type: Boolean,
-      default: true,
-      select: false,
+  
+  passwordChangedAt: Date,
+  passwordResetToken: String,
+  passwordResetExpires: Date,
+  email: {
+    type: String,
+    require: [true, 'Please provide your email!'],
+    unique: true,
+    lowercase: true,
+    validate: [validator.isEmail, 'Please provide a valid email!'],
+  },
+  photo: {
+    type: {type: String,
+    default: 'default.jpg'
     },
   },
+  role: {
+    type: String,
+    enum: ['user', 'admin'],
+    default: 'user',
+  },
+  registration_date: {
+    type: Date,
+    default: Date.now,
+  },
+  follows: {
+    type: Array,
+  },
+  was_followed: {
+    type: Array,
+  },
+  active: {
+    type: Boolean,
+    default: true,
+    select: false,
+  },
+},
   {
     toJSON: { virtuals: true },
     toObject: { virtuals: true },
@@ -70,6 +73,7 @@ userSchema.virtual('reviews', {
   ref: 'Review',
   foreignField: 'user_id',
   localField: '_id',
+
 });
 
 userSchema.pre('save', async function (next) {

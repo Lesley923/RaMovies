@@ -1,7 +1,11 @@
 const express = require('express');
+const multer = require('multer');
 const userController = require('./../controllers/userController');
 const authController = require('./../controllers/authController');
+
 const reviewController = require('./../controllers/reviewController');
+
+
 
 const router = express.Router();
 
@@ -11,6 +15,8 @@ router.get('/logout', authController.logout);
 
 router.post('/forgotPassword', authController.forgotPassword);
 router.patch('/resetPassword/:token', authController.resetPassword);
+
+
 router.get(
   '/me',
   authController.protect,
@@ -24,9 +30,13 @@ router.patch(
   authController.updatePassword
 );
 
-router.patch('/updateMe', authController.protect, userController.updateMe);
+router.patch('/updateMe', authController.protect, userController.uploadUserPhoto, userController.resizeUserPhoto, userController.updateMe);
 router.delete('/deleteMe', authController.protect, userController.deleteMe);
-router.route('/').get(userController.getAllUsers);
+router.route('/').get(  
+  authController.protect,
+  authController.restrictTo('admin'),
+  userController.getAllUsers
+);
 router
   .route('/add')
   .get(userController.showAddUserForm)
