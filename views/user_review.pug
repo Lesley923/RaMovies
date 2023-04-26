@@ -1,0 +1,28 @@
+extends base
+
+mixin navItem(link, text, icon, active)
+  li(class=`${active ? 'side-nav--active' : ''}`)
+    a(href=`${link}`)
+      img(src=`/img/${icon}.png`, alt="")
+      | #{text}
+
+block content
+  main.main
+    .user-view
+      nav.user-view__menu
+        ul.side-nav
+          +navItem('#', 'Settings', 'settings', true)
+          +navItem('#', 'My bookings', 'movie')
+          +navItem('/myReview', 'My reviews', 'review')
+          +navItem('#', 'Billing', 'follow')
+
+      .user-view__content
+        h2.heading-secondary.ma-bt-md Manage Reviews
+        each review in doc.reviews
+          .review-item
+            h3.movie-title #{review.movie_id.title}
+            h4.review-rating #{review.rating}
+            p.review-content #{review.content}
+            .review-actions
+              a.btn.btn--small.btn--edit(href=`/edit/review/${review._id}`) Edit
+              a.btn.btn--small.btn--delete(href=`/delete/review/${review._id}`) Delete

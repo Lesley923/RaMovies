@@ -34,6 +34,10 @@ const movieSchema = new mongoose.Schema(
       min: [1, 'Rating must be above 1.0 '],
       max: [10, 'Rating must be below 10.0'],
     },
+    ratingsQuantity: {
+      type: Number,
+      default: 0,
+    },
     poster_url: {
       type: String,
     },

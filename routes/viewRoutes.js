@@ -5,9 +5,7 @@ const authController = require('../controllers/authController');
 
 const router = express.Router();
 
-
 router.get('/', authController.isLoggedIn, viewsController.getOverview);
-
 
 router.get('/movie/:slug', authController.protect, viewsController.getMovie);
 
@@ -22,5 +20,18 @@ router
     reviewController.addUserAndMovieInfo,
     reviewController.createReview
   );
+
+router
+  .route('/myReview/:id')
+  .get(authController.protect, viewsController.getReview);
+
+router
+  .route('/delete/review/:id')
+  .get(authController.protect, viewsController.deleteReview);
+
+router
+  .route('/edit/review/:id')
+  .get(viewsController.sendEditReviewForm)
+  .post(authController.protect, viewsController.editReview);
 
 module.exports = router;
