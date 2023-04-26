@@ -18,7 +18,7 @@ exports.addUserAndMovieInfo = (req, res, next) => {
 exports.getAllReviews = factory.getAll(Review, 'admin_reviews', 'Manage');
 exports.getReview = factory.getOne(Review, null, 'detail_reviews', 'Detail');
 exports.createReview = catchAsync(async (req, res, next) => {
-  await Review.create(req.body);
+  const review = await Review.create(req.body);
   const doc = await Movie.findById(req.params.id).populate({
     path: 'reviews',
     fields: 'content rating user_id',
@@ -29,5 +29,6 @@ exports.createReview = catchAsync(async (req, res, next) => {
     doc,
   });
 });
+
 exports.updateReview = factory.updateOne(Review);
 exports.deleteReview = factory.deleteOne(Review, 'admin_reviews', 'Manage');

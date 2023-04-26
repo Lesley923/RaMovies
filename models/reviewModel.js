@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const Movie = require('./movieModel');
 const User = require('./userModel');
+const { Stats } = require('fs');
+const { callbackify } = require('util');
 
 const reviewSchema = new mongoose.Schema(
   {
@@ -44,6 +46,46 @@ reviewSchema.pre(/^find/, function (next) {
   });
   next();
 });
+
+reviewSchema.methods.calcAverageRatings = async function (movieId) {
+  const stats = await this.aggregate([
+    {
+      $match: { movie_id: movieId },
+    },
+    {
+      $group: {
+        _id: '$movie_id',
+        nRating: { $sum: 1 },
+        avgRating: { $avg: '$rating' },
+      },
+    },
+  ]);
+
+  if (stats.length > 0) {
+    await Movie.findByIdAndUpdate(movieId, {
+      ratingsQuantity: stats[0].nRating,
+      rating: stats[0].avgRating,
+    });
+  } else {
+    await Movie.findByIdAndUpdate(movieId, {
+      ratingsQuantity: 0,
+      rating: 5,
+    });
+  }
+};
+
+// reviewSchema.post('save', function () {
+//   this.constructor.calcAverageRatings(this.movie_id);
+// });
+
+// reviewSchema.pre(/^findOneAnd/, async function (next) {
+//   const r = await this.findOne();
+//   next();
+// });
+
+// reviewSchema.post(/^findOneAnd/, async function () {
+//   await this.r.constructor.calcAverageRatings(this.r.movie_id);
+// });
 
 const Review = mongoose.model('Review', reviewSchema);
 
