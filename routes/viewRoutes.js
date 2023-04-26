@@ -5,13 +5,14 @@ const authController = require('../controllers/authController');
 
 const router = express.Router();
 
-router.use(authController.isLoggedIn);
 
-router.get('/', viewsController.getOverview);
+router.get('/', authController.isLoggedIn, viewsController.getOverview);
+
 
 router.get('/movie/:slug', authController.protect, viewsController.getMovie);
 
-router.get('/login', viewsController.getLoginForm);
+router.get('/login', authController.isLoggedIn, viewsController.getLoginForm);
+router.get('/me', authController.protect, viewsController.getAccount);
 
 router
   .route('/review/:id')

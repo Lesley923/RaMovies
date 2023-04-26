@@ -1,11 +1,8 @@
 
 import axios from "axios";
 import { showAlert } from "./alerts";
-// import { logout } from "../../controllers/authController";
 
 export const login = async (email, password) => {
-
-
     try{
         const res = await axios({
             method: 'POST',

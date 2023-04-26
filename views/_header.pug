@@ -6,7 +6,7 @@ header.header
     nav.nav.nav--user    
         if user 
             a.nav__el.nav__el--logout Log out
-            a.nav__el(href='#') 
+            a.nav__el(href='/me') 
                 //- img.nav__user-img(src=`/img/users/${user.photo}` alt=`Photo of ${user.name}`) 
                 //- span= user.name.split(' ')[0]  
                 img.nav__user-img(src='https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHw%3D&w=1000&q=80' alt=`User Photo`) 
