@@ -6,19 +6,9 @@ const User = require('../models/userModel');
 const Review = require('../models/reviewModel');
 const { ObjectId } = require('mongodb');
 
-exports.getOverview = catchAsync(async (req, res, next) => {
-  // 1) get movie data
-  const movies = await Movie.find();
+exports.getOverview = factory.getAll(Movie, 'overview', 'All Movies');
 
-  // 2) build template
-
-  // 3) render that template using tour data from 1)
-
-  res.status(200).render('overview', {
-    title: 'All Movies',
-    movies,
-  });
-});
+exports.getFilterMovie = factory.getAll(Movie, 'overview', 'All Movies');
 
 // exports.getMovie = catchAsync(async (req, res, next) => {
 //   // 1) get the data, for the requested movie (including reviews)
