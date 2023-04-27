@@ -29,18 +29,13 @@ const createSendToken = (user, statusCode, res) => {
 
   user.password = undefined;
   // console.log(token);
-  res.status(statusCode).json({
-    status: 'success',
-    token,
-    data: {
-      user,
-    },
-  });
 };
 
 exports.signup = catchAsync(async (req, res, next) => {
+  console.log(req.body);
   const newUser = await User.create(req.body);
   createSendToken(newUser, 201, res);
+  res.redirect('/');
 });
 
 exports.login = catchAsync(async (req, res, next) => {
