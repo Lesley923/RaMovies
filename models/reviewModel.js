@@ -47,32 +47,32 @@ reviewSchema.pre(/^find/, function (next) {
   next();
 });
 
-reviewSchema.methods.calcAverageRatings = async function (movieId) {
-  const stats = await this.aggregate([
-    {
-      $match: { movie_id: movieId },
-    },
-    {
-      $group: {
-        _id: '$movie_id',
-        nRating: { $sum: 1 },
-        avgRating: { $avg: '$rating' },
-      },
-    },
-  ]);
+// reviewSchema.methods.calcAverageRatings = async function (movieId) {
+//   const stats = await this.aggregate([
+//     {
+//       $match: { movie_id: movieId },
+//     },
+//     {
+//       $group: {
+//         _id: '$movie_id',
+//         nRating: { $sum: 1 },
+//         avgRating: { $avg: '$rating' },
+//       },
+//     },
+//   ]);
 
-  if (stats.length > 0) {
-    await Movie.findByIdAndUpdate(movieId, {
-      ratingsQuantity: stats[0].nRating,
-      rating: stats[0].avgRating,
-    });
-  } else {
-    await Movie.findByIdAndUpdate(movieId, {
-      ratingsQuantity: 0,
-      rating: 5,
-    });
-  }
-};
+//   if (stats.length > 0) {
+//     await Movie.findByIdAndUpdate(movieId, {
+//       ratingsQuantity: stats[0].nRating,
+//       rating: stats[0].avgRating,
+//     });
+//   } else {
+//     await Movie.findByIdAndUpdate(movieId, {
+//       ratingsQuantity: 0,
+//       rating: 5,
+//     });
+//   }
+// };
 
 // reviewSchema.post('save', function () {
 //   this.constructor.calcAverageRatings(this.movie_id);
