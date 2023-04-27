@@ -17,8 +17,8 @@ router
     reviewController.setTourUserIds,
     reviewController.createReview
   );
-router.route('/details/:id').get(reviewController.getReview);
-router.route('/delete/:id').post(reviewController.deleteReview);
+router.route('/details/:id').get(authController.protect, reviewController.getReview);
+router.route('/delete/:id').post(authController.protect, reviewController.deleteReview);
 router
   .route('/:id')
   .patch(reviewController.updateReview)

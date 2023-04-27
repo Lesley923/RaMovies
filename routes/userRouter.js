@@ -43,12 +43,12 @@ router
   .get(userController.showAddUserForm)
   .post(userController.createUser);
 
-router.route('/details/:id').get(userController.getUser);
+router.route('/details/:id').get(authController.protect, userController.getUser);
 router.route('/delete/:id').post(userController.deleteUser);
 router
   .route('/edit/:id')
-  .get(userController.showEditUserForm)
-  .post(userController.updateUser);
+  .get(authController.protect, userController.showEditUserForm)
+  .post(authController.protect, userController.updateUser);
 router
   .route('/:id')
   .get(userController.getUser)

@@ -5,25 +5,12 @@ block content
 
     main.main
         .filter-container
-            form.filter-form(method='GET', action='/movie')
-                //- .filter-form__group
-                //-     label(for='title') Title
-                //-     input.filter-form__input#title(name='title', type='text', placeholder='Enter title')
-                //- .filter-form__group
-                //-     label(for='') Genre
-                //-     input.filter-form__input#genre(name='genre', type='text', placeholder='Enter genre')
-                //- .filter-form__group
-                //-     label(for='genre') Genre
-                //-     input.filter-form__input#genre(name='genre', type='text', placeholder='Enter genre')
-                .filter-form__group
-                    label(for='genre') Genre
-                    input.filter-form__input#genre(name='genre', type='text', placeholder='Enter genre')
-
-                //- .filter-form__group
-                //-     label(for='year') Year
-                //-     input.filter-form__input#year(name='year', type='text', placeholder='Enter year')
-
-                input.filter-form__submit(type='submit', value='Filter')
+            .filer-form
+                form.filter-selector(method='GET', action='/movie')
+                    .filter-form__group
+                        label(for='genre') Genre
+                        input.filter-form__input#genre(name='genre', type='text', placeholder='Enter genre')
+                        input.btn.btn--green.btn--small(type='submit', value='Filter')
 
         .card-container 
 
