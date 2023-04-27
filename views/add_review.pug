@@ -4,12 +4,7 @@ section.section-review-form
     form.review-form(action=`/review/${movieId}` method="POST")
       .form-group
         label(for="rating") Rating:
-        select#rating.form-control(name="rating")
-          option(value="1") 1
-          option(value="2") 2
-          option(value="3") 3
-          option(value="4") 4
-          option(value="5") 5
+        input#rating.form-control(type="number" name="rating" min="1" max="10" step="0.1"  required)
       .form-group
         label(for="content") Review content:
         textarea#content.form-control(name="content" rows="5")

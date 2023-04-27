@@ -14,7 +14,7 @@ block content
                 ul.side-nav
                     +navItem('#', 'Settings', 'settings', true)
                     +navItem('#', 'My bookings', 'movie')
-                    +navItem('#', 'My reviews', 'review')
+                    +navItem(`/myReview/${userId}`, 'My reviews', 'review')
                     +navItem('#', 'Billing', 'follow')
 
                 //- - if (user.role === 'admin')
