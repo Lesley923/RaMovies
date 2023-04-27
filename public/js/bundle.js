@@ -11984,6 +11984,7 @@ var login = /*#__PURE__*/function () {
             data: {
               email: email,
               password: password
+              // role,
             }
           });
         case 3:
@@ -12244,7 +12245,6 @@ if (loginForm) loginForm.addEventListener('submit', function (e) {
   e.preventDefault();
   var email = document.getElementById('email').value;
   var password = document.getElementById('password').value;
-  console.log("sb");
   (0, _login.login)(email, password);
 });
 if (logOutBtn) logOutBtn.addEventListener('click', _login.logout);
@@ -12257,7 +12257,7 @@ if (userDataForm) userDataForm.addEventListener('submit', function (e) {
   console.log(form);
 
   // const username = document.getElementById('name').value;
-  // const email = document.getElementById('email').value; 
+  // const email = document.getElementById('email').value;
   (0, _updateSettings.updateSettings)(form, 'data');
 });
 if (userPasswordForm) userPasswordForm.addEventListener('submit', /*#__PURE__*/function () {
