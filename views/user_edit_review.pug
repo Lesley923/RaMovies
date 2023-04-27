@@ -8,7 +8,7 @@ block content
             form(method="POST" action=`/edit/review/${review._id}`)
                 .edit-form-group
                     label(for="movie_title") Movie Title
-                    p.movie-title #{review.movie_id.title}
+                    p.edit-review-title #{review.movie_id.title}
                 
                 .edit-form-group
                     label(for="rating") Rating

@@ -11,17 +11,19 @@ block content
     .user-view
       nav.user-view__menu
         ul.side-nav
+
           +navItem('/me', 'Account Settings', 'settings', true)
           +navItem(`/myReview/${userId}`, 'My reviews', 'review')
           
 
       .user-view__content
-        h2.heading-secondary.ma-bt-md Manage Reviews
-        each review in doc.reviews
-          .review-item
-            h3.movie-title #{review.movie_id.title}
-            h4.review-rating #{review.rating}
-            p.review-content #{review.content}
-            .review-actions
-              a.btn.btn--small.btn--edit(href=`/edit/review/${review._id}`) Edit
-              a.btn.btn--small.btn--delete(href=`/delete/review/${review._id}`) Delete
+        .user-view__form-container
+          h2.heading-secondary.ma-bt-md Your Reviews
+          each review in doc.reviews
+            .review-item
+              h3.review-movie-title #{review.movie_id.title}
+              h4.user-review-rating #{review.rating}
+              p.user-review-content #{review.content}
+              .review-actions
+                a.btn.btn--small.btn--edit(href=`/edit/review/${review._id}`) Edit
+                a.btn.btn--small.btn--delete(href=`/delete/review/${review._id}`) Delete
