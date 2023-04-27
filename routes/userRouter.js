@@ -10,7 +10,11 @@ const reviewController = require('./../controllers/reviewController');
 
 const router = express.Router();
 
-router.post('/signup', authController.signup);
+router
+  .route('/signup')
+  .get(userController.sendSignUpForm)
+  .post(authController.signup);
+
 router.post('/login', authController.login);
 router.get('/logout', authController.logout);
 

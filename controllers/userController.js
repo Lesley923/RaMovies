@@ -111,6 +111,14 @@ exports.showEditUserForm = catchAsync(async (req, res, next) => {
     user,
   });
 });
+
+exports.sendSignUpForm = catchAsync(async (req, res, next) => {
+  res.status(200).render('signup', {
+    title: 'Sign Up',
+  });
+});
+
+
 exports.getAllUsers = factory.getAll(User, 'admin_user', 'Manage');
 exports.getUser = factory.getOne(User, null, 'detail_user', 'Detail');
 
