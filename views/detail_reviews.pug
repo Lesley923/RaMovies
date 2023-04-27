@@ -1,13 +1,14 @@
 extends base
 
 block content
-    .detail-container
+    .review-detail-container
         .review_information
-            .detail-title
-                h2.review-rating Rating: #{doc.rating}
-                p.review-content Content: &nbsp; #{doc.content}
-                p.review-movie Movie: &nbsp; #{doc.movie_id.title}
+            h2.review-rating Rating: #{doc.rating}
+            .review-content
+                p.review-content #{doc.content}
+            .review-info 
+                p.review-movie Movie: &nbsp; #{doc.movie_id.title}           
                 p.review-user User: &nbsp; #{doc.user_id.username}
                 p.review-date Review Date: &nbsp; #{doc.review_date}
-            .detail-button
-                a.admin_btn.admin_btn-primary(href="/v1/review/") Back to Manage Reviews
+        .detail-button
+            a.admin_btn.admin_btn-primary(href="/v1/review/") Back to Manage

@@ -38,9 +38,10 @@ block content
                             span #{movie.title}
 
                     .card__details 
-                        h4.card__sub-heading I'm still thinking about it 
+                        h4.card__sub-heading= `About ${movie.title}`
                         //-  =`${movie.xxx}` 以上
-                        p.card__text= movie.description 
+                        - const description = movie.description.split('.');
+                        p.card__text= description[0] + '...'
                         .card__data 
                             img.card__icon(src="/img/genre.png", alt="")
                             span= movie.genre 

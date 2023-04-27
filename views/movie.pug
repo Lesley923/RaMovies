@@ -60,9 +60,10 @@ block content
                     //- each actor in movie.actors
                         img(src=``, alt=`${actor.name}`)
                         span= actor.name
-                    .overview-box__detail
-                        each actor in doc.actors
-                            span.overview-box__text(style="display: block") #{actor}
+                    
+                    each actor in doc.actors
+                        .overview-box__detail
+                            span.overview-box__label #{actor}
                             
                     
 
@@ -102,10 +103,31 @@ block content
 
     section.section-cta
         .cta
-
+            .cta__img.cta__img--logo
+                img(src='/img/white-logo.png', alt='Natours logo')
+                img.cta__img.cta__img--1(src='', alt='Tour picture')
+                img.cta__img.cta__img--2(src='', alt='Tour picture')
             .cta__content
                 h2.heading-secondary Have you watched it?
                 p.cta__text  Make your own review!
-                a(href=`/review/${doc._id}`)
+                a(href='#', id='add-review-btn')
                     button.btn.btn--green.span-all-rows Add a Review!  
+
+    
+    .review-form-modal.hidden
+        section.section-review-form
+            .review-form-container
+                h2.heading-secondary.review-form-title Add your review
+                form.review-form(action=`/review/${doc._id}` method="POST")
+                    .review-form-group
+                        label(for="rating") Rating:
+                        input#rating.review-form-control(type="number" name="rating" min="1" max="10" step="0.1" required)
+                    .review-form-group
+                        label(for="content") Review:
+                        textarea#content.review-form-control(name="content" rows="5")
+                    .review-form-group.review-form-button
+                        button.btn.btn--green(type="submit") Submit Review
+
+//- 
+    
                 
