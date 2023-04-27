@@ -7,16 +7,16 @@ block content
             form.form.form--signup(method="POST" action="/v1/user/signup")
                 .form__group 
                     label.form__label(for='username') Username 
-                    input#username.form__input(type='text', name="username" ,placeholder='your username', required)
+                    input#username.form__input(type='text', name="username", placeholder='your username', required)
                 .form__group 
                     label.form__label(for='email') Email address 
                     input#email.form__input(type='email', name="email", placeholder='you@example.com', required)
                 .form__group.ma-bt-md 
                     label.form__label(for='password') Password 
-                    input#password.form__input(type='password',name="password", placeholder='********', required, minlength='8')
+                    input#password.form__input(type='password', name="password", placeholder='********', required, minlength='8')
                 .form__group.ma-bt-md 
                     label.form__label(for='passwordConfirm') Password Confirm 
-                    input#passwordConfirm.form__input(type='password', name="passwordConfirm", placeholder='********', required, minlength='8')
+                    input#passwordConfirm.form__input(type='password', name="passwordConfirm",  placeholder='********', required, minlength='8')
                 
                 //- .form__group.ma-bt-md
                 //-     label.form__label(for='role') Role

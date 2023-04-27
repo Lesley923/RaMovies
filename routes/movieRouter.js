@@ -19,12 +19,12 @@ router.route('/').get(
   movieController.getAllMovies
 );
 
-router.get('/add', movieController.showAddMovieForm);
-router.post('/add', movieController.createMovie);
-router.get('/edit/:slug', movieController.showEditMovieForm);
-router.post('/edit/:slug', movieController.updateMovie);
+router.get('/add', authController.protect, movieController.showAddMovieForm);
+router.post('/add',authController.protect, movieController.createMovie);
+router.get('/edit/:slug', authController.protect, movieController.showEditMovieForm);
+router.post('/edit/:slug',authController.protect, movieController.updateMovie);
 router.post('/delete/:slug', movieController.deleteMovie);
-router.get('/details/:slug', movieController.getMovie);
+router.get('/details/:slug', authController.protect, movieController.getMovie);
 // router
 //   .route('/:movieId/reviews')
 //   .post(

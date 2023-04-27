@@ -6,11 +6,11 @@ block content
         .user_information
             .detail-title
                 h2.user-username #{doc.username}
-                img.user-photo(src=doc.photo, alt=doc.username)
+                img.user-photo(src=`/img/users/${doc.photo}`, alt='User photo')
                 p.user-email Email: &nbsp; #{doc.email}
-                p.user-follows Follows: &nbsp; #{doc.follows}
-                p.user-was_followed Was Followed: &nbsp; #{doc.was_followed}
-                p.user-registration_date Registration Date: &nbsp; #{doc.registration_date}
+                p.user-follows Follows: &nbsp;
+                p.user-was_followed Was Followed: &nbsp; 
+                p.user-registration_date Registration Date: &nbsp; #{new Date(doc.registration_date).toLocaleString('en-us', {month: 'long', year: 'numeric'})}
             .detail-button
                 a.admin_btn.admin_btn-primary(href="/v1/user/") Back to Manage
 
