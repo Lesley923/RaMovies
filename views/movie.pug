@@ -110,29 +110,24 @@ block content
             .cta__content
                 h2.heading-secondary Have you watched it?
                 p.cta__text  Make your own review!
-                a(href=`/review/${doc._id}`)
+                a(href='#', id='add-review-btn')
                     button.btn.btn--green.span-all-rows Add a Review!  
 
     
+    .review-form-modal.hidden
+        section.section-review-form
+            .review-form-container
+                h2.heading-secondary.review-form-title Add your review
+                form.review-form(action=`/review/${doc._id}` method="POST")
+                    .review-form-group
+                        label(for="rating") Rating:
+                        input#rating.review-form-control(type="number" name="rating" min="1" max="10" step="0.1" required)
+                    .review-form-group
+                        label(for="content") Review:
+                        textarea#content.review-form-control(name="content" rows="5")
+                    .review-form-group.review-form-button
+                        button.btn.btn--green(type="submit") Submit Review
 
-    section.section-review-form
-        .review-form-container
-            h2.heading-secondary Add your review
-            form.review-form(action=`/review/${movieId}` method="POST")
-                .form-group
-                    label(for="rating") Rating:
-                    select#rating.form-control(name="rating")
-                        option(value="1") 1
-                        option(value="2") 2
-                        option(value="3") 3
-                        option(value="4") 4
-                        option(value="5") 5
-                .form-group
-                    label(for="content") Review content:
-                    textarea#content.form-control(name="content" rows="5")
-                .form-group
-                    button.btn.btn--green(type="submit") Submit Review
-
-
+//- 
     
                 
