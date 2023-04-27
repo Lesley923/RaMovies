@@ -2,10 +2,12 @@ const express = require('express');
 const viewsController = require('../controllers/viewsController');
 const reviewController = require('./../controllers/reviewController');
 const authController = require('../controllers/authController');
+const movieController = require('../controllers/movieController');
 
 const router = express.Router();
 
 router.get('/', authController.isLoggedIn, viewsController.getOverview);
+router.get('/movie', viewsController.getFilterMovie);
 
 router.get('/movie/:slug', authController.protect, viewsController.getMovie);
 

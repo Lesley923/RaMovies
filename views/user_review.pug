@@ -11,10 +11,10 @@ block content
     .user-view
       nav.user-view__menu
         ul.side-nav
-          +navItem('/me', 'Settings', 'settings', true)
-          +navItem('#', 'My bookings', 'movie')
-          +navItem('/myReview', 'My reviews', 'review')
-          +navItem('#', 'Billing', 'follow')
+
+          +navItem('/me', 'Account Settings', 'settings', true)
+          +navItem(`/myReview/${userId}`, 'My reviews', 'review')
+          
 
       .user-view__content
         .user-view__form-container

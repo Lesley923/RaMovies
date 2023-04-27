@@ -3,10 +3,31 @@ extends base
 
 block content 
 
-    main.main 
+    main.main
+        .filter-container
+            form.filter-form(method='GET', action='/movie')
+                //- .filter-form__group
+                //-     label(for='title') Title
+                //-     input.filter-form__input#title(name='title', type='text', placeholder='Enter title')
+                //- .filter-form__group
+                //-     label(for='') Genre
+                //-     input.filter-form__input#genre(name='genre', type='text', placeholder='Enter genre')
+                //- .filter-form__group
+                //-     label(for='genre') Genre
+                //-     input.filter-form__input#genre(name='genre', type='text', placeholder='Enter genre')
+                .filter-form__group
+                    label(for='genre') Genre
+                    input.filter-form__input#genre(name='genre', type='text', placeholder='Enter genre')
+
+                //- .filter-form__group
+                //-     label(for='year') Year
+                //-     input.filter-form__input#year(name='year', type='text', placeholder='Enter year')
+
+                input.filter-form__submit(type='submit', value='Filter')
+
         .card-container 
 
-            each movie in movies
+            each movie in datas
                 .card 
                     .card__header 
                         .card__picture 
@@ -36,9 +57,9 @@ block content
 
                     .card__footer 
                         p 
-                            span.card__footer-value $222
-                            |  
-                            span.card__footer-text per person 
+                            span.card__footer-value #{movie.ratingsQuantity}
+                            | 
+                            span.card__footer-text ratings 
                         p.card__ratings  
                             span.card__footer-value= movie.rating
                             | 
