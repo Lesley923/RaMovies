@@ -858,6 +858,55 @@
     margin: 0 auto;
     padding: 0 8rem;
   }
+
+  .review-item{
+    background-color: #faf7f5f3;
+    padding: 20px;
+    margin-bottom: 30px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .review-actions {
+    display: flex;
+    align-items: center;
+  }
+
+
+  .review-movie-title {
+    font-size: 22px;
+    margin-bottom: 10px;
+  }
+
+  .user-review-rating {
+    font-size: 18px;
+    color: #222;
+    margin-bottom: 22px;
+  }
+  
+  .user-review-content {
+    font-size: 16px;
+    margin-bottom: 40px;
+  }
+
+
+  .btn--edit {
+    background-color: #79c6fa;
+    color: #fff;
+    margin-right: 5%;
+  }
+  
+  .btn--delete {
+    background-color: #ed988f;
+    color: #fff;
+  }
+
+
+
+
+
+
+
   
   .footer {
     background-color: #f7f7f7;
@@ -2002,6 +2051,13 @@ h2.review-rating {
   justify-content: center;
   margin-top: 80px;
   margin-bottom: 50px;
+}
+
+.edit-review-title {
+  font-size: 1.8em;
+  font-weight: 600;
+  color: #333;
+  margin-right: 41%;
 }
 
 

@@ -11,8 +11,8 @@ block content
     main.main
         .user-view
             nav.user-view__menu
-                ul.side-nav
-                    +navItem('#', 'Settings', 'settings', true)
+                ul.side-nav 
+                    +navItem('/me', 'Settings', 'settings', true)
                     +navItem('#', 'My bookings', 'movie')
                     +navItem(`/myReview/${userId}`, 'My reviews', 'review')
                     +navItem('#', 'Billing', 'follow')
