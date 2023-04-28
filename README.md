@@ -33,7 +33,7 @@ npm install
 ```
 >>to reinstall all the package for your system
 
->> then to run this application, run the code iin your terminal :
+>> then to run this application, run the code in your terminal :
 
 ```bash
 npm run start:dev
