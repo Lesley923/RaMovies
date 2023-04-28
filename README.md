@@ -57,6 +57,8 @@ npm run start:dev
 
 you can use these two accounts to start your experience
 
+---
+
 
 ## Who maintains and contributes to the project
 
