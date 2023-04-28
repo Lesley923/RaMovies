@@ -69,7 +69,7 @@ exports.deleteReview = catchAsync(async (req, res, next) => {
   ]);
 
   const roundAvg =
-    stats.length > 0 ? parseFloat(stats[0].avgRating.toFixed(1)) : 0;
+    stats.length > 0 ? parseFloat(stats[0].avgRating.toFixed(1)) : 4.5;
   const newRatingsQuantity = stats.length > 0 ? stats[0].nRating : 0;
 
   // Update the Movie document with the new average rating and number of ratings
@@ -96,8 +96,6 @@ exports.deleteReview = catchAsync(async (req, res, next) => {
     doc,
   });
 });
-
-exports.editReview = catchAsync(async (req, res, next) => {});
 
 exports.sendEditReviewForm = catchAsync(async (req, res, next) => {
   const review = await Review.findById(req.params.id);
@@ -133,7 +131,9 @@ exports.editReview = catchAsync(async (req, res, next) => {
   ]);
 
   // Round the average rating to one decimal place
-  const roundAvg = parseFloat(stats[0].avgRating.toFixed(1));
+  const roundAvg =
+    stats.length > 0 ? parseFloat(stats[0].avgRating.toFixed(1)) : 4.5;
+  const newRatingsQuantity = stats.length > 0 ? stats[0].nRating : 0;
 
   // Update the Movie document with the new average rating and number of ratings
   await Movie.findByIdAndUpdate(

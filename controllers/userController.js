@@ -4,6 +4,7 @@ const User = require('./../models/userModel');
 const catchAsync = require('./../utils/catchAsync');
 const AppError = require('./../utils/appError');
 const factory = require('./handlerFactory');
+const Review = require('./../models/reviewModel');
 
 // const multerStorage = multer.diskStorage({
 //   destination: (req, file, cb) => {
@@ -120,5 +121,31 @@ exports.getUser = factory.getOne(User, null, 'detail_user', 'Detail');
 
 exports.updateUser = factory.updateOne(User, 'admin_user', 'Manage');
 
-exports.deleteUser = factory.deleteOne(User, 'admin_user', 'Manage');
+// exports.deleteUser = factory.deleteOne(User, 'admin_user', 'Manage');
+exports.deleteUser = catchAsync(async (req, res, next) => {
+  const user = await User.findById(req.params.id).populate({
+    path: 'reviews',
+    fields: '_id content rating',
+  });
+
+  if (!user) {
+    return next(new AppError('No movie found with that slug', 404));
+  }
+
+  // Delete all referenced reviews
+  await Promise.all(
+    user.reviews.map(async (review) => {
+      await Review.findByIdAndDelete(review._id);
+    })
+  );
+
+  // Delete the movie
+  await User.findOneAndDelete(req.params.id);
+  const datas = await User.find();
+
+  res.status(204).render('admin_user', {
+    title: 'Manage',
+    datas,
+  });
+});
 exports.createUser = factory.createOne(User, 'admin_user', 'Manage');

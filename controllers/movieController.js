@@ -4,6 +4,7 @@ const APIFeatures = require('./../utils/apiFeatures');
 const catchAsync = require('./../utils/catchAsync');
 const factory = require('./handlerFactory');
 const slugify = require('slugify');
+const Review = require('./../models/reviewModel');
 
 exports.aliasTopMovies = (req, res, next) => {
   req.query.limit = '5';
@@ -19,7 +20,34 @@ exports.getMovie = factory.getOne(Movie, null, 'detail_movie', 'Detail');
 exports.updateMovie = factory.updateOne(Movie, 'admin_movie', 'Manage');
 
 exports.createMovie = factory.createOne(Movie, 'admin_movie', 'Manage');
-exports.deleteMovie = factory.deleteOne(Movie, 'admin_movie', 'Manage');
+// exports.deleteMovie = factory.deleteOne(Movie, 'admin_movie', 'Manage');
+
+exports.deleteMovie = catchAsync(async (req, res, next) => {
+  const movie = await Movie.findOne({ slug: req.params.slug }).populate({
+    path: 'reviews',
+    fields: '_id content rating',
+  });
+
+  if (!movie) {
+    return next(new AppError('No movie found with that slug', 404));
+  }
+
+  // Delete all referenced reviews
+  await Promise.all(
+    movie.reviews.map(async (review) => {
+      await Review.findByIdAndDelete(review._id);
+    })
+  );
+
+  // Delete the movie
+  await Movie.findOneAndDelete({ slug: req.params.slug });
+  const datas = await Movie.find();
+
+  res.status(204).render('admin_movie', {
+    title: 'Manage',
+    datas,
+  });
+});
 
 // controllers/movieController.js
 exports.showAddMovieForm = (req, res, next) => {
