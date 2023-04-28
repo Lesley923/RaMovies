@@ -9,7 +9,7 @@ user can sign up, login this website, browse, search movies they like, add, dele
 
 admin can login this website, add, delete and search user and ammin, and check information of them. admin can also manage reviews and movies, including add, search, delete and edit movie; search and delete reviews.
 
----
+
 
 ## How users can get started with the project
 
@@ -57,7 +57,7 @@ npm run start:dev
 
 you can use these two accounts to start your experience
 
----
+
 
 
 ## Who maintains and contributes to the project
